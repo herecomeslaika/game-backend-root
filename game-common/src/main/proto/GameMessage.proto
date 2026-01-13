@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package com.example.game.common.proto;
+
+option java_package = "com.example.game.common.proto";
+option java_outer_classname = "GameProto";
+
+// 1. 顶层通信包（所有消息都包在这个壳子里）
+message Packet {
+  Header header = 1;
+  bytes body = 2; // 具体业务数据的序列化字节（LoginReq, JoinRoomReq 等）
+}
+
+// 2. 消息头
+message Header {
+  int32 msgType = 1; // 消息ID: 1001=登录, 1002=进房间, 2001=出牌
+  int64 timestamp = 2;
+  int64 userId = 3;  // 发送者ID
+}
+
+// ================= 业务消息定义 =================
+
+// Cmd: 1001 登录
+message LoginReq {
+  string token = 1;
+}
+
+message LoginRes {
+  int32 code = 1; // 0=成功
+  string msg = 2;
+  int64 userId = 3;
+  string nickname = 4;
+}
+
+// Cmd: 1002 加入房间
+message JoinRoomReq {
+  int32 roomId = 1;
+}
+
+// Cmd: 2001 出牌
+message PlayCardReq {
+  repeated int32 cards = 1; // 出的牌，比如 [5, 5, 5, 5]
+}
+
+// Cmd: 3000 游戏状态推送（广播给所有人）
+message GameStatePush {
+  int32 state = 1; // 0=准备, 1=打牌中
+  int64 currentTurnUserId = 2; // 当前轮到谁出牌
+}

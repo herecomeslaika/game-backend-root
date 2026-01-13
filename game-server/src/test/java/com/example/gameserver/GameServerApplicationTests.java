@@ -1,10 +1,10 @@
-package com.example.gamebackendroot;
+package com.example.gameserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GameBackendRootApplicationTests {
+class GameServerApplicationTests {
 
     @Test
     void contextLoads() {

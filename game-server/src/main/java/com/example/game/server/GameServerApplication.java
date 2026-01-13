@@ -1,13 +1,13 @@
-package com.example.gamebackendroot;
+package com.example.game.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GameBackendRootApplication {
+public class GameServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GameBackendRootApplication.class, args);
+        SpringApplication.run(GameServerApplication.class, args);
     }
 
 }
